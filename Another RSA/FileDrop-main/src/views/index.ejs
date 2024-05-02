@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+	<head>
+		<link rel="apple-touch-icon" sizes="180x180" href="./assets/img/favicon/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="./assets/img/favicon/favicon-16x16.png">
+		<link rel="manifest" href="./assets/img/favicon/site.webmanifest">
+		<link rel="mask-icon" href="./assets/img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+		<link rel="shortcut icon" href="./assets/img/favicon/favicon.ico">
+		<meta name="msapplication-TileColor" content="#9790ad">
+		<meta name="msapplication-config" content="./assets/img/favicon/browserconfig.xml">
+		<meta name="theme-color" content="#c8c5de">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta name="description" content="FileDrop - The Encrypted File Sharing Application">
+		<meta name="keywords" content="Xtrendence,Adrian,Khodadad,Nouchin,FileDrop,WebSocket,Socket.IO,Server,File-Sharing,Upload">
+		<meta name="author" content="Xtrendence">
+		<meta charset="UTF-8">
+		<script src="./assets/js/utils.js"></script>
+		<script src="./assets/js/CryptoFD.js"></script>
+		<script src="./assets/js/notifier.js"></script>
+		<script src="./assets/js/FileSaver.js"></script>
+		<script src="./assets/js/ChunkReader.js"></script>
+		<script src="./assets/js/Uploader.js"></script>
+		<script src="./assets/js/jquery.js"></script>
+		<script src="./assets/js/crypto-js.js"></script>
+		<script src="./assets/js/forge.js"></script>
+		<script src="./assets/js/socket.js"></script>
+		<script src="./assets/js/main.js"></script>
+		<link rel="stylesheet" href="./assets/css/light.css">
+		<link rel="stylesheet" href="./assets/css/dark.css">
+		<link rel="stylesheet" href="./assets/css/style.css">
+		<link rel="stylesheet" href="./assets/css/resize.css">
+		<title>FileDrop</title>
+	</head>
+	<body>
+		<div class="loading-overlay active noselect" id="loading-overlay"><div class="loading-icon"><div></div><div></div></div></div>
+		<div class="login-wrapper" id="login-wrapper">
+			<span class="login-title noselect">FileDrop</span>
+			<div class="login-container">
+				<input id="input-username" type="text" placeholder="Username...">
+				<div>
+					<button id="random-username-button">Random</button>
+					<button id="confirm-username-button">Confirm</button>
+				</div>
+			</div>
+		</div>
+		<div class="app-wrapper hidden" id="app-wrapper">
+			<svg id="background" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1500"><rect fill="rgb(0,0,0)" width="2000" height="1500"/><defs><radialGradient id="a" gradientUnits="objectBoundingBox"><stop  id="stop-1" offset="0" stop-color="rgb(0,0,0)"/><stop id="stop-2" offset="1" stop-color="rgb(0,0,0)"/></radialGradient><linearGradient id="b" gradientUnits="userSpaceOnUse" x1="0" y1="750" x2="1550" y2="750"><stop  offset="0" stop-color="rgb(0,0,0)"/><stop id="stop-3" offset="1" stop-color="rgb(0,0,0)"/></linearGradient><path id="s" fill="url(#b)" d="M1549.2 51.6c-5.4 99.1-20.2 197.6-44.2 293.6c-24.1 96-57.4 189.4-99.3 278.6c-41.9 89.2-92.4 174.1-150.3 253.3c-58 79.2-123.4 152.6-195.1 219c-71.7 66.4-149.6 125.8-232.2 177.2c-82.7 51.4-170.1 94.7-260.7 129.1c-90.6 34.4-184.4 60-279.5 76.3C192.6 1495 96.1 1502 0 1500c96.1-2.1 191.8-13.3 285.4-33.6c93.6-20.2 185-49.5 272.5-87.2c87.6-37.7 171.3-83.8 249.6-137.3c78.4-53.5 151.5-114.5 217.9-181.7c66.5-67.2 126.4-140.7 178.6-218.9c52.3-78.3 96.9-161.4 133-247.9c36.1-86.5 63.8-176.2 82.6-267.6c18.8-91.4 28.6-184.4 29.6-277.4c0.3-27.6 23.2-48.7 50.8-48.4s49.5 21.8 49.2 49.5c0 0.7 0 1.3-0.1 2L1549.2 51.6z"/><g id="g"><use href="#s" transform="scale(0.12) rotate(60)"/><use href="#s" transform="scale(0.2) rotate(10)"/><use href="#s" transform="scale(0.25) rotate(40)"/><use href="#s" transform="scale(0.3) rotate(-20)"/><use href="#s" transform="scale(0.4) rotate(-30)"/><use href="#s" transform="scale(0.5) rotate(20)"/><use href="#s" transform="scale(0.6) rotate(60)"/><use href="#s" transform="scale(0.7) rotate(10)"/><use href="#s" transform="scale(0.835) rotate(-40)"/><use href="#s" transform="scale(0.9) rotate(40)"/><use href="#s" transform="scale(1.05) rotate(25)"/><use href="#s" transform="scale(1.2) rotate(8)"/><use href="#s" transform="scale(1.333) rotate(-60)"/><use href="#s" transform="scale(1.45) rotate(-30)"/><use href="#s" transform="scale(1.6) rotate(10)"/></g></defs><g  transform="translate(20 0)"><g  transform=""><circle fill="url(#a)" r="3000"/><g opacity="0.5"><circle fill="url(#a)" r="2000"/><circle fill="url(#a)" r="1800"/><circle fill="url(#a)" r="1700"/><circle fill="url(#a)" r="1651"/><circle fill="url(#a)" r="1450"/><circle fill="url(#a)" r="1250"/><circle fill="url(#a)" r="1175"/><circle fill="url(#a)" r="900"/><circle fill="url(#a)" r="750"/><circle fill="url(#a)" r="500"/><circle fill="url(#a)" r="380"/><circle fill="url(#a)" r="250"/></g><g  transform="rotate(-61.2 0 0)"><use href="#g" transform="rotate(10)"/><use href="#g" transform="rotate(120)"/><use href="#g" transform="rotate(240)"/></g><circle fill-opacity="0.1" fill="url(#a)" r="3000"/></g></g></svg>
+			<button id="logout-button" class="logout-button">Logout</button>
+			<div id="clients-wrapper" class="clients-wrapper"></div>
+		</div>
+		<div id="upload-wrapper" class="upload-wrapper hidden">
+			<span id="upload-title" class="title noselect">Sending File › User (127.0.0.1)</span>
+			<div id="upload-area" class="upload-area">
+				<input id="upload-file" type="file" class="hidden">
+				<div class="progress-wrapper hidden" id="progress-wrapper">
+					<div id="progress-background"></div>
+					<div id="progress-foreground"></div>
+				</div>
+				<span id="upload-subtitle" class="noselect">Drag &amp; Drop or Click</span>
+			</div>
+			<button id="upload-cancel-button" class="upload-cancel-button">Cancel</button>
+			<button id="upload-button" class="upload-button">Upload</button>
+		</div>
+		<button id="server-button" class="server-button"></button>
+		<button id="settings-button" class="settings-button round-button">
+			<svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1152 896q0-106-75-181t-181-75-181 75-75 181 75 181 181 75 181-75 75-181zm512-109v222q0 12-8 23t-20 13l-185 28q-19 54-39 91 35 50 107 138 10 12 10 25t-9 23q-27 37-99 108t-94 71q-12 0-26-9l-138-108q-44 23-91 38-16 136-29 186-7 28-36 28h-222q-14 0-24.5-8.5t-11.5-21.5l-28-184q-49-16-90-37l-141 107q-10 9-25 9-14 0-25-11-126-114-165-168-7-10-7-23 0-12 8-23 15-21 51-66.5t54-70.5q-27-50-41-99l-183-27q-13-2-21-12.5t-8-23.5v-222q0-12 8-23t19-13l186-28q14-46 39-92-40-57-107-138-10-12-10-24 0-10 9-23 26-36 98.5-107.5t94.5-71.5q13 0 26 10l138 107q44-23 91-38 16-136 29-186 7-28 36-28h222q14 0 24.5 8.5t11.5 21.5l28 184q49 16 90 37l142-107q9-9 24-9 13 0 25 10 129 119 165 170 7 8 7 22 0 12-8 23-15 21-51 66.5t-54 70.5q26 50 41 98l183 28q13 2 21 12.5t8 23.5z"/></svg>
+		</button>
+		<div id="settings-wrapper" class="settings-wrapper hidden">
+			<a href="https://www.github.com/Xtrendence/FileDrop" target="_blank">
+				<button class="section-button">GitHub Repo</button>
+			</a>
+			<button id="clear-storage-button" class="section-button">Clear Storage</button>
+			<button id="settings-logout-button" class="section-button">Logout</button>
+			<div class="section">
+				<span class="title noselect">Theme</span>
+				<div class="toggle-wrapper" id="theme-toggle">
+					<div class="toggle-container">
+						<svg class="moon-icon" width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1390 1303q-54 9-110 9-182 0-337-90t-245-245-90-337q0-192 104-357-201 60-328.5 229t-127.5 384q0 130 51 248.5t136.5 204 204 136.5 248.5 51q144 0 273.5-61.5t220.5-171.5zm203-85q-94 203-283.5 324.5t-413.5 121.5q-156 0-298-61t-245-164-164-245-61-298q0-153 57.5-292.5t156-241.5 235.5-164.5 290-68.5q44-2 61 39 18 41-15 72-86 78-131.5 181.5t-45.5 218.5q0 148 73 273t198 198 273 73q118 0 228-51 41-18 72 13 14 14 17.5 34t-4.5 38z"/></svg>
+						<svg class="sun-icon" width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1472 896q0-117-45.5-223.5t-123-184-184-123-223.5-45.5-223.5 45.5-184 123-123 184-45.5 223.5 45.5 223.5 123 184 184 123 223.5 45.5 223.5-45.5 184-123 123-184 45.5-223.5zm276 277q-4 15-20 20l-292 96v306q0 16-13 26-15 10-29 4l-292-94-180 248q-10 13-26 13t-26-13l-180-248-292 94q-14 6-29-4-13-10-13-26v-306l-292-96q-16-5-20-20-5-17 4-29l180-248-180-248q-9-13-4-29 4-15 20-20l292-96v-306q0-16 13-26 15-10 29-4l292 94 180-248q9-12 26-12t26 12l180 248 292-94q14-6 29 4 13 10 13 26v306l292 96q16 5 20 20 5 16-4 29l-180 248 180 248q9 12 4 29z"/></svg>
+					</div>
+				</div>
+			</div>
+			<div class="section">
+				<span class="title noselect">Encryption</span>
+				<div class="toggle-wrapper active" id="encryption-toggle">
+					<div class="toggle-container"></div>
+				</div>
+			</div>
+			<div class="section">
+				<span class="title noselect">Auto-Login</span>
+				<div class="toggle-wrapper active" id="auto-login-toggle">
+					<div class="toggle-container"></div>
+				</div>
+			</div>
+			<div class="section">
+				<span class="title noselect">Rounded UI</span>
+				<div class="toggle-wrapper active" id="rounded-ui-toggle">
+					<div class="toggle-container"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

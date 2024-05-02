@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSA Encryption and Decryption</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+.code {
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+
+.result {
+  margin-top: 20px;
+}
+
+.result p {
+  margin: 5px 0;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>RSA Encryption and Decryption</h1>
+
+  <div class="code">
+    <pre><code>// JavaScript code for RSA Encryption and Decryption
+function gcd(a, h) {
+  /*
+  * This function returns the gcd or greatest common
+  * divisor
+  */
+  let temp;
+  while (true) {
+    temp = a % h;
+    if (temp == 0) return h;
+    a = h;
+    h = temp;
+  }
+}
+
+let p = 3;
+let q = 7;
+
+// Stores the first part of public key:
+let n = p * q;
+
+// Finding the other part of public key.
+// e stands for encrypt
+let e = 2;
+let phi = (p - 1) * (q - 1);
+while (e < phi) {
+  /*
+  * e must be co-prime to phi and
+  * smaller than phi.
+  */
+  if (gcd(e, phi) == 1) break;
+  else e++;
+}
+let k = 2; // A constant value
+let d = (1 + (k * phi)) / e;
+
+// Message to be encrypted
+let msg = 12;
+
+console.log("Message data = " + msg);
+
+// Encryption c = (msg ^ e) % n
+let c = Math.pow(msg, e);
+c = c % n;
+console.log("Encrypted data = " + c);
+
+// Decryption m = (c ^ d) % n
+let m = Math.pow(c, d);
+m = m % n;
+console.log("Original Message Sent = " + m);
+
+document.getElementById('encrypted').innerText = "Encrypted data: " + c;
+document.getElementById('decrypted').innerText = "Decrypted data: " + m;
+
+// This code is written by Sundaram</code></pre>
+  </div>
+
+  <div class="result">
+    <p id="encrypted">Encrypted data: </p>
+    <p id="decrypted">Decrypted data: </p>
+  </div>
+</div>
+
+</body>
+</html>

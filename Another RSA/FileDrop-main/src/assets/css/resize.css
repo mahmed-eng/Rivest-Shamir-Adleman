@@ -1,0 +1,38 @@
+@media screen and (max-width:800px) {
+	.server-button {
+		height:120px;
+		padding:0 20px 0 20px;
+	}
+	.server-button.logged-in {
+		left:20px;
+	}
+	.server-button span {
+		display:block;
+		line-height:34px;
+	}
+	.server-button .separator, .server-button .separator-required {
+		display:none;
+	}
+	.logout-button {
+		display:none;
+	}
+	#settings-logout-button {
+		display:block;
+	}
+	.upload-wrapper .title {
+		width:calc(100% - 100px);
+		left:40px;
+	}
+}
+
+@media screen and (max-width:420px) {
+	.server-button {
+		width:calc(100% - 40px);
+	}
+	.settings-button {
+		bottom:150px;
+	}
+	.settings-wrapper {
+		bottom:150px;
+	}
+}

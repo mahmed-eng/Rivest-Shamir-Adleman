@@ -1,0 +1,85 @@
+{
+	"name": "filedrop",
+	"version": "1.0.6",
+	"description": "An encrypted file sharing application that leverages web sockets to allow users to send and receive files.",
+	"main": "src/server.js",
+	"scripts": {
+		"test": "jest tests/server.test.js --verbose && jest tests/client.test.js --verbose",
+		"test-async": "jest --detectOpenHandles --verbose",
+		"test-coverage": "jest --coverage --verbose",
+		"test-client": "jest tests/client.test.js --verbose",
+		"test-server": "jest tests/server.test.js --verbose",
+		"start": "node src/server.js",
+		"dev": "nodemon src/server.js",
+		"dist": "touch src/portable && sudo electron-builder -mwl && rm src/portable && npm run dist-manual",
+		"dist-macos": "touch src/portable && sudo electron-builder -m --x64 --arm64 && rm src/portable",
+		"dist-windows": "copy NUL > src\\portable && electron-builder -w && del src\\portable",
+		"dist-linux": "touch src/portable && sudo electron-builder -l && rm src/portable",
+		"dist-manual": "zip -9 -r ManualServer.zip src package.json package-lock.json README.md LICENSE.md jsconfig.json Dockerfile docker-compose.yml",
+		"electron-start": "electron src/server.js portable",
+		"electron-dev": "nodemon --exec electron src/server.js portable"
+	},
+	"build": {
+		"appId": "com.xtrendence.filedrop",
+		"productName": "FileDrop",
+		"files": [
+			"src/",
+			"node_modules/",
+			"package.json"
+		],
+		"asar": false,
+		"mac": {
+			"target": [
+				"dmg"
+			],
+			"artifactName": "FileDrop.${version}.Mac.${arch}.${ext}"
+		},
+		"win": {
+			"target": [
+				"nsis"
+			],
+			"artifactName": "FileDrop.${version}.Windows.${ext}",
+			"icon": "build/icon.ico"
+		},
+		"linux": {
+			"target": [
+				"AppImage",
+				"deb"
+			],
+			"artifactName": "FileDrop.${version}.Linux.${ext}"
+		}
+	},
+	"jest": {
+		"testMatch": [
+			"**/tests/*.test.js"
+		]
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Xtrendence/FileDrop.git"
+	},
+	"author": "Xtrendence <xtrendence@gmail.com>",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Xtrendence/FileDrop/issues"
+	},
+	"homepage": "https://github.com/Xtrendence/FileDrop#readme",
+	"dependencies": {
+		"@types/jest": "^27.0.3",
+		"cors": "^2.8.5",
+		"ejs": "^3.1.6",
+		"electron-localshortcut": "^3.2.1",
+		"express": "^4.17.1",
+		"nodemon": "^2.0.15",
+		"pouchdb": "^7.2.2",
+		"socket.io": "^4.4.0",
+		"supertest": "^6.1.6"
+	},
+	"devDependencies": {
+		"electron": "^16.0.2",
+		"electron-builder": "^22.14.5",
+		"jest": "^27.3.1",
+		"puppeteer": "^12.0.0",
+		"socket.io-client": "^4.4.0"
+	}
+}
